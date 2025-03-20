@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rafly</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding: 20px;
+        background-color: #000;
+        color: #fff;
+        transition: all 0.3s ease;
+      }
+      body.light-mode {
+        background-color: #fff;
+        color: #000;
+      }
+      .form-control {
+        background-color: #333;
+        color: #fff;
+        border-color: #444;
+      }
+      .form-control:focus {
+        background-color: #444;
+        color: #fff;
+        border-color: #555;
+      }
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+      .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+      }
+      .theme-switch {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="theme-switch">
+      <button class="btn btn-light" onclick="toggleTheme()">🌓 Toggle Theme</button>
+    </div>
+    <div class="container">
+      <h1 class="text-center">Selamat Datang di Aplikasi Flask!</h1>
+
+      <!-- Formulir Input -->
+      <form method="POST" class="mt-4">
+        <div class="mb-3">
+          <label for="nama" class="form-label">Nama:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nama"
+            name="nama"
+            placeholder="Masukkan nama Anda"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="pesan" class="form-label">Pesan:</label>
+          <textarea
+            class="form-control"
+            id="pesan"
+            name="pesan"
+            rows="3"
+            placeholder="Masukkan pesan Anda"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Kirim</button>
+      </form>
+
+      <!-- Menampilkan Data yang Dikirim -->
+      {% if nama or pesan %}
+      <div class="mt-4">
+        <h3>Data yang Dikirim:</h3>
+        <p><strong>Nama:</strong> {{ nama }}</p>
+        <p><strong>Pesan:</strong> {{ pesan }}</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function toggleTheme() {
+        document.body.classList.toggle('light-mode');
+      }
+    </script>
+  </body>
+</html>
