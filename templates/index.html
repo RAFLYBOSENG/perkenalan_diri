@@ -9,45 +9,13 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <style>
-      body {
-        padding: 20px;
-        background-color: #000;
-        color: #fff;
-        transition: all 0.3s ease;
-      }
-      body.light-mode {
-        background-color: #fff;
-        color: #000;
-      }
-      .form-control {
-        background-color: #333;
-        color: #fff;
-        border-color: #444;
-      }
-      .form-control:focus {
-        background-color: #444;
-        color: #fff;
-        border-color: #555;
-      }
-      .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-      }
-      .btn-primary:hover {
-        background-color: #0056b3;
-        border-color: #0056b3;
-      }
-      .theme-switch {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-      }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body>
     <div class="theme-switch">
-      <button class="btn btn-light" onclick="toggleTheme()">🌓 Toggle Theme</button>
+      <button class="btn btn-light" onclick="toggleTheme()">
+        🌓 Toggle Theme
+      </button>
     </div>
     <div class="container">
       <h1 class="text-center">Selamat Datang di Aplikasi Flask!</h1>
@@ -90,8 +58,24 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+      // Cek tema yang tersimpan saat halaman dimuat
+      document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+          document.body.classList.add('light-mode');
+        }
+      });
+
       function toggleTheme() {
-        document.body.classList.toggle('light-mode');
+        const body = document.body;
+        body.classList.toggle('light-mode');
+        
+        // Simpan preferensi tema ke localStorage
+        if (body.classList.contains('light-mode')) {
+          localStorage.setItem('theme', 'light');
+        } else {
+          localStorage.setItem('theme', 'dark');
+        }
       }
     </script>
   </body>
